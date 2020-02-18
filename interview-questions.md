@@ -28,27 +28,19 @@ Answer the following questions. First, without external resources. Challenge you
 
   Your answer:
     GET    - read
-    PUT    - read
+    PUT    - read (1st attempt = wrong)
     POST   - create
     PATCH  - update/edit
     DELETE - delete/deactivate/remove
 
   Researched answer:
-    GET    - read
-    PUT    - update
-    POST   - create
-    PATCH  - update
-    DELETE - delete
+  HTTP defines a set of request methods that indicate the desired action to be performed on a given resource.
 
-    1) GET: Requests a representation of the specified resource. Requests using GET should only retrieve data.
-
-    2) POST: Used to submit an entity to the specified resource, often causing a change in state or side effects on the server.
-
-    3) PATCH: Used to apply partial modifications to a resource.
-
-    4) PUT: Replaces all current representations of the target resource with the request payload.
-
-    5) DELETE: Deletes the specified resource.
+  1) GET: Requests using this method should only retrieve data.
+  2) PUT: Requests using this method creates a new entry or replaces a represenation of the entry with the request payload.
+  3) POST: Requests using this method submit/create an entry to the specified resource; often causing a change in state or side effects on the server.
+  4) PATCH: Requests using this method alter/updates the entry.
+  5) DELETE: Requests using this method deletes/removes the specified entry.
 
 3. When creating a basic (stateless) class component in React, what are the necessary elements needed to render "Hello World" on the page?
 
