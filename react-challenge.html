@@ -11,14 +11,12 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <title>Mood Meter</title>
   </head>
+
   <body>
     <div id="react-container"></div>
     <script type="text/babel">
     // No need to change anything ABOVE this line ^
-
-
-
-      class App extends React.Component{
+      class App extends React.Component {
         constructor(props){
           super(props)
           this.state = {
@@ -29,10 +27,14 @@
         }
 
         nextMood = () => {
-          if(currentMood === moods.length - 1){
-            this.setState({ currentMood: currentMood = 0 })
+          let { currentMood, moods } = this.state;
+          let newMood;
+          if (currentMood === moods.length - 1) {
+            newMood = 0;
+            this.setState({ currentMood: newMood });
           } else {
-            this.setState({ currentMood: currentMood + 1 })
+            newMood = currentMood + 1;
+            this.setState({ currentMood: newMood });
           }
         }
 
@@ -41,13 +43,15 @@
         }
 
         render(){
+          let { moods, currentMood, setMood } = this.state;
           return(
             <div>
+              <Header />
               <MoodMeter
-                moodOptions={ this.state.moods[this.state.currentMood] }
+                moodOptions={ moods[currentMood] }
                 next={ this.nextMood }
                 setThisMood={ this.setThisMood }
-                set={ this.state.setMood }
+                set={ setMood }
               />
             </div>
           )
@@ -55,40 +59,38 @@
       }
 
       class Header extends React.Component{
-        render(){
+        render() {
           return(
-            <div>
-              <h1>Welcome to the Mood Meter App</h1>
-            </div>
+            <h1>Welcome to the Mood Meter App</h1>
           )
         }
       }
 
       class MoodMeter extends React.Component{
+        constructor(props) {
+          super(props)
+        }
+
         render(){
           return(
+            <>
               <h3>Mood Options:</h3>
               <p style={{fontSize: "40px"}}>{ this.props.moodOptions }</p>
-              <button onClick={ }>Click Here For Next Mood Option</button>
+              <button onClick={ this.props.next }>Click Here For Next Mood Option</button>
               <br />
               <br />
               <h3>Save your mood here!</h3>
               <button onClick={ this.props.setThisMood }>Yup, this is me right now.</button>
               <h3>My mood:</h3>
               <p style={{fontSize: "40px"}}>{ this.props.set }</p>
+            </>
           )
         }
       }
 
-
-
-
-
-
-
       // No need to change anything below this line
-      const domContainer = document.querySelector('#react-container')
-      ReactDOM.render(<App />, domContainer)
+      const domContainer = document.querySelector('#react-container');
+      ReactDOM.render(<App />, domContainer);
     </script>
   </body>
 </html>
